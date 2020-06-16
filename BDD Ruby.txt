@@ -1,0 +1,21 @@
+BDD Ruby
+É preciso ter o Ruby, o Bundler e o chromedriver da versão do navegador disponível no computador. Para não ter que correr o risco de não ter a versão mais recente ao rodar programa, é bom manter uma pasta chromedriver no disco C para colocar a versão relevante. 
+Para baixar o chromedriver: https://chromedriver.chromium.org/downloads/version-
+selection
+Para instalar o Ruby: https://linuxize.com/post/how-to-install-ruby-on-ubuntu-18-04/
+Para instalar o Bundler: sudo apt install ruby-bundler
+No vs code abrir um arquivo Gemfile sem extensão para colocar as gems.
+Caso seja necessário usar uma versão específica basta escrever da seguinte forma ao lado da declaração da gem:  gem 'cucumber','~> 3.1.0'
+No terminal digitar bundle install e o VSCode cria o Gemfile.lock depois de baixar as gems. Caso seja necessário usar mais bibliotecas, não esquecer de acrescentar no Gemfile. No terminal então digitar cucumber --init para abrir a estrutura de pastas que ele usa. Abrir dentro da pasta features uma pasta pages para a implementação das funcionalidades. No arquivo env.rb que está em features > support eu adiciona soliciação dos frameworks necessários e registro o driver, associando ao site prism, usando Selenium e definindo o navegador como chrome. No Capybara eu também defino a configuração do servidor como false, o padrão do driver como site_prism, que a janela do navegador abara maximizada, que o tempo de espera máximo seja de 10s e também defino o site em que os testes serão feitos. A definição do site pode ser feita nas pages também, mas se há uma url base é bom definir aqui e nas pages só o final da url relevante.
+Vamos então criar um arquivo cucumber.yml na raiz do projeto para configurar um relatório dos testes. Os comandos format definem a aparencia e cores no terminal (pretty) e a criação de um relatório (report.html) na raiz do projeto. Com as features, driver e relatório definidos já é possível rodar o projeto, mesmo sem ter as funcionalidades simplementadas. Para isso basta digitar cucumber no terminal do próprio Vscode se quiser rodar todos os testes, ou cucumber -t @cadastro_valido_fixo_pf para rodar o teste desejado pela sua tag.
+Tive um problema na primeira execução pois o Linux não encontrou o chromedriver, então instalei usando sudo apt-get install chromium-chromedriver
+Ao rodar, no próprio terminal aparecerão sugestões de como implementar as funcionalidades, aí basta copiar e colar em um arquivo criado na pasta features > step_definitions, nesse caso o arquivo cadastro_steps.rb
+Ao criar a primeira funcionalidade também é preciso criar a página a que ela se refere, na pasta features > pages com o nome cadastro_page (sem extensão), lembrando que ruby usa snake case. Só classes ficam com maiúscula no começo.
+Em cadastro_page é preciso definir a classe CadastroPage que foi chamada na funcionalidade cadastro_steps, com a herança do SitePrism do tipo Page e os elementos da página já mapeados.
+Na definição de métodos, cmp é campo e rd é radio button. As palavras-chave Dado, E, etc;
+. são indiferentes no Ruby, ele só considera as strings.
+Para encontrar/conferir elemento mapeado na página, no console (Ctrl +I) usar $$("#elemento") para um elemento mapeado por id, por exemplo.
+
+
+
+
